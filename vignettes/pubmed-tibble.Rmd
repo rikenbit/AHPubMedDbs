@@ -1,0 +1,68 @@
+---
+title: "Provide PubMed tibble datasets for AnnotationHub"
+author: "Koki Tsuyuzaki"
+graphics: no
+package: AHPubMeds
+output:
+    BiocStyle::html_document:
+        toc_float: true
+vignette: >
+    %\VignetteIndexEntry{Provide PubMed tibble datasets for AnnotationHub}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+    %\VignetteDepends{AnnotationHub}
+---
+
+```{r style, echo = FALSE, results = 'asis', message=FALSE}
+BiocStyle::markdown()
+```
+
+**Authors**: `r packageDescription("AHPubMedDbs")[["Author"]] `<br />
+**Last modified:** `r file.info("pubmed-tibble.Rmd")$mtime`<br />
+**Compiled**: `r date()`
+
+# Fetch PubMed tibble datasets from `AnnotationHub`
+
+The `AHPubMedDbs` package provides the metadata for all PubMed datasets
+, which is preprocessed as tibble format and saved in
+`r Biocpkg("AnnotationHub")`.
+First we load/update the `AnnotationHub` resource.
+
+```{r load-lib, message = FALSE}
+library(AnnotationHub)
+ah <- AnnotationHub()
+```
+
+Next we list all PubMed entries from `AnnotationHub`.
+
+```{r list-PubMedDb}
+query(ah, "PubMed")
+```
+
+We can confirm the metadata in AnnotationHub in Bioconductor S3 bucket
+with `mcols()`.
+
+```{r confirm-metadata}
+mcols(query(ah, "PubMed"))
+```
+
+We can retrieve only the PubMedDb tibble files as follows.
+
+```{r query-mouse}
+qr <- query(ah, c("PubMedDb"))
+# pubmed_tibble <- qr[[1]]
+```
+
+Since this data is tibble, this can be passed to next function by using
+pipe operator of `tidyverse` (`%>%`).
+
+This data is useful for the biomedical text mining and expected to be used
+with `tidymodels` or `WordVectors` to perform some machine learning methods.
+
+For the details, check the vignettes of `tidyverse`, `tidymodels`,
+and `WordVectors`.
+
+# Session information {.unnumbered}
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```
