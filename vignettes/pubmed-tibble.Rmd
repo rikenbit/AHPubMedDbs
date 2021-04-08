@@ -2,7 +2,7 @@
 title: "Provide PubMed tibble datasets for AnnotationHub"
 author: "Koki Tsuyuzaki"
 graphics: no
-package: AHPubMeds
+package: AHPubMedDbs
 output:
     BiocStyle::html_document:
         toc_float: true
