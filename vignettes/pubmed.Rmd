@@ -7,7 +7,7 @@ output:
     BiocStyle::html_document:
         toc_float: true
 vignette: >
-    %\VignetteIndexEntry{Provide PubMed sqlite/tibble/data.table datasets for AnnotationHub}
+    %\VignetteIndexEntry{Provide PubMed datasets for AnnotationHub}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
     %\VignetteDepends{AnnotationHub}
@@ -20,6 +20,15 @@ BiocStyle::markdown()
 **Authors**: `r packageDescription("AHPubMedDbs")[["Author"]] `<br />
 **Last modified:** `r file.info("pubmed.Rmd")$mtime`<br />
 **Compiled**: `r date()`
+
+# Installation
+To install this package, start R (>= 4.1.0) and enter:
+
+```{r install, eval=FALSE}
+if(!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("AHPubMedDbs")
+```
 
 # Fetch PubMed tibble datasets from `AnnotationHub`
 
